@@ -1,7 +1,6 @@
 #include "Matrix.hpp"
 namespace zich
 {
-
     Matrix::Matrix(const vector<double> &data, const int row, const int col)
     {
         if (row <= 0 || col <= 0)
@@ -311,7 +310,14 @@ namespace zich
                     out << mat.data[(unsigned int)(i * mat.col + j)];
                 }
             }
-            out << ']' << '\n';
+            if (i != mat.row - 1)
+            {
+                out << ']' << '\n';
+            }
+            else
+            {
+                out << ']';
+            }
         }
         return out;
     }
@@ -322,7 +328,7 @@ namespace zich
         vector<string> vec;
         for (int i = 0; i < len; i++)
         {
-            if (str[(unsigned int) i] == seperator && !temp.empty())
+            if (str[(unsigned int)i] == seperator && !temp.empty())
             {
                 vec.push_back(temp);
                 temp = "";
@@ -333,7 +339,7 @@ namespace zich
                 {
                     continue;
                 }
-                    temp += str[(unsigned int)i];
+                temp += str[(unsigned int)i];
             }
         }
         vec.push_back(temp);
