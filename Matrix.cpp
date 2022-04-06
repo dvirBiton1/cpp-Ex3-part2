@@ -322,7 +322,7 @@ namespace zich
         vector<string> vec;
         for (int i = 0; i < len; i++)
         {
-            if (str[(unsigned int) i] == seperator)
+            if (str[(unsigned int) i] == seperator && !temp.empty())
             {
                 vec.push_back(temp);
                 temp = "";
@@ -348,6 +348,7 @@ namespace zich
             ch = input.get();
             s += ch;
         }
+        s.pop_back();
         vector<string> vs = split(s, ',');
         int row = vs.size();
         int len1 = vs.size();
