@@ -5,11 +5,11 @@ namespace zich
     {
         if (row <= 0 || col <= 0)
         {
-            throw invalid_argument("row or col can't be negative");
+            throw runtime_error("row or col can't be negative");
         }
         if (data.size() != row * col)
         {
-            throw invalid_argument("the array must be equal to the size of the matrix");
+            throw runtime_error("the array must be equal to the size of the matrix");
         }
 
         this->data = data;
@@ -24,7 +24,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and col must be equal");
+            throw runtime_error("row and col must be equal");
         }
         vector<double> mat3_data;
         // Matrix mat3(row, col);
@@ -66,7 +66,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and col must be equal");
+            throw runtime_error("row and col must be equal");
         }
         for (int i = 0; i < this->row; i++)
         {
@@ -81,7 +81,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and col must be equal");
+            throw runtime_error("row and col must be equal");
         }
         vector<double> mat3_data;
         mat3_data.resize((unsigned int)(row * col));
@@ -122,7 +122,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and col must be equal");
+            throw runtime_error("row and col must be equal");
         }
         for (int i = 0; i < this->row; i++)
         {
@@ -147,7 +147,7 @@ namespace zich
     {
         if (this->col != mat.row)
         {
-            throw invalid_argument("the cols must be equal");
+            throw runtime_error("the cols must be equal");
         }
         vector<double> mat3_data;
         mat3_data.resize((unsigned int)(this->row * mat.col));
@@ -165,7 +165,7 @@ namespace zich
     {
         if (this->col != mat.row)
         {
-            throw invalid_argument("the cols must be equal");
+            throw runtime_error("the cols must be equal");
         }
         vector<double> mat3_data;
         mat3_data.resize((unsigned int)(this->row * mat.col));
@@ -230,7 +230,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and cols must be equals");
+            throw runtime_error("row and cols must be equals");
         }
         return this->sumMatrix() > mat.sumMatrix();
     }
@@ -238,7 +238,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and cols must be equals");
+            throw runtime_error("row and cols must be equals");
         }
         return this->sumMatrix() >= mat.sumMatrix();
     }
@@ -246,7 +246,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and cols must be equals");
+            throw runtime_error("row and cols must be equals");
         }
         return this->sumMatrix() < mat.sumMatrix();
     }
@@ -254,7 +254,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and cols must be equals");
+            throw runtime_error("row and cols must be equals");
         }
         return this->sumMatrix() <= mat.sumMatrix();
     }
@@ -262,7 +262,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and cols must be equals");
+            throw runtime_error("row and cols must be equals");
         }
         for (int i = 0; i < this->row; i++)
         {
@@ -280,7 +280,7 @@ namespace zich
     {
         if (this->row != mat.row || this->col != mat.col)
         {
-            throw invalid_argument("row and cols must be equals");
+            throw runtime_error("row and cols must be equals");
         }
         for (int i = 0; i < this->row; i++)
         {
@@ -355,15 +355,6 @@ namespace zich
             s += ch;
         }
         s.pop_back();
-        const int minChar = 48;
-        const int maxChar = 57;
-        for (unsigned int i = 0; i < s.length(); i++)
-        {
-            if ((minChar > s.at(i) || s.at(i) > maxChar) && s.at(i) != '[' && s.at(i) != ']' && s.at(i) != ' ' && s.at(i) != ',' )
-            {
-                throw invalid_argument("your string must be like the convention");
-            }
-        }
         vector<string> vs = split(s, ',');
         int row = vs.size();
         int len1 = vs.size();
@@ -382,7 +373,7 @@ namespace zich
             }
             if (col != len2)
             {
-                throw invalid_argument("you have problem with your string");
+                throw runtime_error("you have problem with your string");
             }
 
             for (int j = 0; j < len2; j++)

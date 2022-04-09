@@ -289,29 +289,3 @@ TEST_CASE("constrctor"){
         CHECK_NOTHROW(Matrix a(vector1, 3, 3));
         CHECK_THROWS(Matrix b(vector2, 4, 3));
 }
-TEST_CASE("cin and cout"){
-    vector<double> vector1;
-        for (double i = 0; i < 9; ++i)
-        {
-            vector1.push_back(i);
-        }
-        /*if you cin [1 2 3],[4 5 6] you show in cout
-        [1 2 3]
-        [4 5 6]
-        */
-        Matrix a(vector1, 3, 3);
-        cin >> a;
-        cout << a << endl;
-        int numOfEcp = 0;
-        /*if you cin [1 2 3 4],[4 5 6] you need to catch exception
-        */
-       try
-       {
-          cin >> a;
-       }
-       catch(const std::exception& e)
-       {
-           numOfEcp++;
-       }
-       CHECK_EQ(1, numOfEcp);
-}
