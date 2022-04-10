@@ -355,9 +355,17 @@ namespace zich
             s += ch;
         }
         s.pop_back();
+        for (unsigned int i = 0; i < s.length()-1; i++)
+        {
+            if (s.at(i) == ',' && s.at(i+1) != ' ')
+            {
+                throw invalid_argument("you have problem with your string");
+            }
+            
+        }
         vector<string> vs = split(s, ',');
         // vector<string> vs = split(s, '\n');
-        int row = vs.size();
+        int row = vs.size();    
         int len1 = vs.size();
         int col = 0;
         int flag = 1;
@@ -374,7 +382,7 @@ namespace zich
             }
             if (col != len2)
             {
-                throw runtime_error("you have problem with your string");
+                throw invalid_argument("you have problem with your string");
             }
 
             for (int j = 0; j < len2; j++)
@@ -427,7 +435,7 @@ namespace zich
     {
         if (mat1.row != mat2.row || mat1.col != mat2.col)
         {
-            throw runtime_error("row and cols must be equals");
+            throw invalid_argument("row and cols must be equals");
         }
         for (int i = 0; i < mat1.row; i++)
         {

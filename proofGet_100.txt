@@ -1,0 +1,61 @@
+--- 0 seconds
+
+
+### Cleaning old files (to prevent this, export DEBUG=1) ###
+rm -f objects/Matrix.o objects/Test.o *.o test* 
+rm -f StudentTest*.cpp
+
+
+### Check 3: all tests should pass
+! make -f Makefile test
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile TestRunner.cpp -o TestRunner.o
+curl https://raw.githubusercontent.com/itzikbs1/Ex3_A_Cpp/master/Test.cpp > StudentTest1.cpp
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  6690  100  6690    0     0   9253      0 --:--:-- --:--:-- --:--:--  9253
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile StudentTest1.cpp -o StudentTest1.o
+curl https://raw.githubusercontent.com/itamaralmog/matrix-calculator-a/main/Test.cpp > StudentTest2.cpp
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 18458  100 18458    0     0  30408      0 --:--:-- --:--:-- --:--:-- 30408
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile StudentTest2.cpp -o StudentTest2.o
+curl https://raw.githubusercontent.com/amitmelamed/-matrix-calculator-a/main/Test.cpp > StudentTest3.cpp
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  9089  100  9089    0     0  11881      0 --:--:-- --:--:-- --:--:-- 11881
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile StudentTest3.cpp -o StudentTest3.o
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile sources/Matrix.cpp -o objects/Matrix.o
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources --compile sources/Test.cpp -o objects/Test.o
+clang++-9 -std=c++2a -Werror -Wsign-conversion -Isources TestRunner.o StudentTest1.o StudentTest2.o StudentTest3.o objects/Matrix.o objects/Test.o -o test
+! timeout 20 ./test
+[doctest] doctest version is "2.3.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases:     40 |     40 passed |      0 failed |      0 skipped
+[doctest] assertions:  15187 |  15187 passed |      0 failed |
+[doctest] Status: SUCCESS!
+--- 10 seconds
+### Score 3: 100
+
+
+### Check 4: clang-tidy should run without warnings in user code
+! timeout 20 make -f Makefile tidy
+clang-tidy sources/Matrix.cpp sources/Test.cpp -extra-arg=-std=c++2a -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=* --
+3540 warnings generated.
+7445 warnings generated.
+Suppressed 7446 warnings (7445 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+--- 16 seconds
+### Score 4: 100
+
+
+### Check 5: valgrind should run without errors
+! timeout 20 make -f Makefile valgrind
+valgrind --tool=memcheck -v --leak-check=full --show-leak-kinds=all  --error-exitcode=99 ./test 2>&1 | { egrep "lost| at " || true; }
+==2341==     in use at exit: 0 bytes in 0 blocks
+--- 19 seconds
+### Score 5: 100
+
+
+Grade: 100
+
