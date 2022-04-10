@@ -14,6 +14,7 @@ namespace zich
         vector<double> data;
 
     public:
+        Matrix();
         Matrix(const vector<double> &data, const int row, const int col);
         ~Matrix();
         Matrix operator+(Matrix const &mat);
@@ -36,7 +37,7 @@ namespace zich
         bool operator>=(Matrix &mat);
         bool operator<(Matrix &mat);
         bool operator<=(Matrix &mat);
-        bool operator==(Matrix &mat);
+        // bool operator==(Matrix const &mat);
         bool operator!=(Matrix &mat);
         double multiplication(const Matrix &mat, const int tempRow, const int tempCol);
         double sumMatrix();
@@ -45,8 +46,10 @@ namespace zich
         friend Matrix operator-(Matrix &mat);
         friend Matrix operator+(Matrix &mat);
         friend Matrix operator*(const double scalar, Matrix &mat);
-    };
 
+        friend bool operator==(Matrix const &mat1,Matrix const &mat2);
+    };
+    
     //  Matrix::Matrix(/* args */)
     //  {
     //  }

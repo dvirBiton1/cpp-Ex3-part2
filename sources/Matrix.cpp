@@ -258,24 +258,24 @@ namespace zich
         }
         return this->sumMatrix() <= mat.sumMatrix();
     }
-    bool Matrix::operator==(Matrix &mat)
-    {
-        if (this->row != mat.row || this->col != mat.col)
-        {
-            throw runtime_error("row and cols must be equals");
-        }
-        for (int i = 0; i < this->row; i++)
-        {
-            for (int j = 0; j < this->col; j++)
-            {
-                if (this->data[(unsigned int)(i * col + j)] != mat.data[(unsigned int)(i * col + j)])
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+    // bool Matrix::operator==(Matrix const &mat)
+    // {
+    //     if (this->row != mat.row || this->col != mat.col)
+    //     {
+    //         throw runtime_error("row and cols must be equals");
+    //     }
+    //     for (int i = 0; i < this->row; i++)
+    //     {
+    //         for (int j = 0; j < this->col; j++)
+    //         {
+    //             if (this->data[(unsigned int)(i * col + j)] != mat.data[(unsigned int)(i * col + j)])
+    //             {
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // }
     bool Matrix::operator!=(Matrix &mat)
     {
         if (this->row != mat.row || this->col != mat.col)
@@ -356,6 +356,7 @@ namespace zich
         }
         s.pop_back();
         vector<string> vs = split(s, ',');
+        // vector<string> vs = split(s, '\n');
         int row = vs.size();
         int len1 = vs.size();
         int col = 0;
@@ -421,6 +422,24 @@ namespace zich
         }
         Matrix mat3(mat3_data, mat.row, mat.col);
         return mat3;
+    }
+    bool operator ==(Matrix const &mat1,Matrix const &mat2)
+    {
+        if (mat1.row != mat2.row || mat1.col != mat2.col)
+        {
+            throw runtime_error("row and cols must be equals");
+        }
+        for (int i = 0; i < mat1.row; i++)
+        {
+            for (int j = 0; j < mat1.col; j++)
+            {
+                if (mat1.data[(unsigned int)(i * mat1.col + j)] != mat2.data[(unsigned int)(i * mat2.col + j)])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     Matrix operator*(const double scalar, Matrix &mat)
     {
