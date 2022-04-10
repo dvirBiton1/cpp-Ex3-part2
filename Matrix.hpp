@@ -14,6 +14,7 @@ namespace zich
         vector<double> data;
 
     public:
+        Matrix();
         Matrix(const vector<double> &data, const int row, const int col);
         ~Matrix();
         Matrix operator+(Matrix const &mat);

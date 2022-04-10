@@ -1,6 +1,11 @@
 #include "Matrix.hpp"
 namespace zich
 {
+    Matrix::Matrix()
+    {
+        this->col = 0;
+        this->row = 0;
+    }
     Matrix::Matrix(const vector<double> &data, const int row, const int col)
     {
         if (row <= 0 || col <= 0)
@@ -359,7 +364,7 @@ namespace zich
         const int maxChar = 57;
         for (unsigned int i = 0; i < s.length(); i++)
         {
-            if ((minChar > s.at(i) || s.at(i) > maxChar) && s.at(i) != '[' && s.at(i) != ']' && s.at(i) != ' ' && s.at(i) != ',' )
+            if ((minChar > s.at(i) || s.at(i) > maxChar) && s.at(i) != '[' && s.at(i) != ']' && s.at(i) != ' ' && s.at(i) != ',' && s.at(i) != '-' )
             {
                 throw invalid_argument("your string must be like the convention");
             }

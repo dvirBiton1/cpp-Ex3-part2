@@ -20,30 +20,109 @@ using namespace zich;
 int main() {
   
   std::vector<double> identity = {1, 0, 0, 0, 1, 0, 0, 0, 1};
-  std::vector<double> arr = {3, 0, 0, 0, 3, 0, 0, 0, 3};
+  std::vector<double> arr = {1, 0, 0, 0, 1, 0, 0, 0, 1};
   Matrix a{identity, 3, 3};  // constructor taking a vector and a matrix size
-  cout << a << endl;
+  Matrix b{identity, 3, 3};
+  cout << a << endl<< endl;
   /* prints [1 0 0]
             [0 1 0]
             [0 0 1]*/
-
-  cout << (-a) << endl;
-  /* prints [-1 0 0]
-            [0 -1 0]
-            [0 0 -1]*/
-  cout << (3*a) << endl;
-  /* prints [3 0 0]
-            [0 3 0]
-            [0 0 3]*/
-
-  Matrix b{arr, 3, 3};
-  a *= -3;
-  cout << (a+b) << endl;  // prints the 0 matrix
-  cout << (b-a) << endl;
-  /* prints [6 0 0]
-            [0 6 0]
-            [0 0 6]*/
-
+  cout << (a + a) << endl<< endl;
+  /* prints [2 0 0]
+            [0 2 0]
+            [0 0 2]*/
+  cout << (a++) << endl<< endl;
+  /* prints [1 0 0]
+            [0 1 0]
+            [0 0 1]*/          
+  cout << a <<endl<< endl;
+  /* prints [2 1 1]
+            [1 2 1]
+            [1 1 2]*/
+  cout << (++a) <<endl<< endl;
+  /* prints [3 2 2]
+            [2 3 2]
+            [2 2 3]*/
+  cout << (a) << endl << endl;
+  /* prints [3 2 2]
+            [2 3 2]
+            [2 2 3]*/ 
+  a += b;
+  cout << (a) << endl << endl;
+  /* prints [4 2 2]
+            [2 4 2]
+            [2 2 4]*/
+  cout << (a-b) << endl << endl;
+  /* prints [3 2 2]
+            [2 3 2]
+            [2 2 3]*/
+  cout << (a--) << endl << endl;
+  /* prints [4 2 2]
+            [2 4 2]
+            [2 2 4]*/
+  cout << (a) << endl << endl;
+  /* prints [3 1 1]
+            [1 3 1]
+            [1 1 3]*/
+  cout << (--a) << endl << endl;
+  /* prints [2 0 0]
+            [0 2 0]
+            [0 0 2]*/
+  cout << (a) << endl << endl;
+  /* prints [2 0 0]
+            [0 2 0]
+            [0 0 2]*/
+  a -= b;
+  cout << (a) << endl << endl;
+  /* prints [1 0 0]
+            [0 1 0]
+            [0 0 1]*/
+  cout << (a*b) << endl << endl;
+  /* prints [1 0 0]
+            [0 1 0]
+            [0 0 1]*/
+  a*=b;
+  cout << (a) << endl << endl;
+  /* prints [1 0 0]
+            [0 1 0]
+            [0 0 1]*/
+  cout << (a*2) << endl << endl;
+  /* prints [2 0 0]
+            [0 2 0]
+            [0 0 2]*/
+  a *= 2;
+  cout << (a) << endl << endl;
+  /* prints [2 0 0]
+            [0 2 0]
+            [0 0 2]*/
+  cout << (a > b) << endl << endl;
+  /* prints true */
+  cout << (a >= b) << endl << endl;
+  /* prints true */
+  cout << (a < b) << endl << endl;
+  /* prints false */
+  cout << (a <= b) << endl << endl;
+  /* prints false */
+  cout << (a == b) << endl << endl;
+  /* prints false */
+  cout << (a != b) << endl << endl;
+  /* prints true */
+  cout << (+a) << endl << endl;
+  /* prints [2 0 0]
+            [0 2 0]
+            [0 0 2]*/
+  cout << (-a) << endl << endl;
+  /* prints [-2 0 0]
+            [0 -2 0]
+            [0 0 -2]*/
+  cout << (2 * a) << endl << endl;
+  /* prints [4 0 0]
+            [0 4 0]
+            [0 0 4]*/
+  cout << "enter your matrix\n";
+  cin >> a;
+  cout << (a) << endl << endl;
+            
   cout << "End of demo!" << endl;
   return 0;
 }
